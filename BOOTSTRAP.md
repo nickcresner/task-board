@@ -8,7 +8,7 @@ On fresh install, before doing anything else:
 cd /home/node/.openclaw/workspace
 git init
 git remote add origin https://${GITHUB_TOKEN}@github.com/nickcresner/openclaw-workspace.git
-git pull origin main
+git pull origin master
 ```
 
 If the repo exists and has files, your memory is restored. Read SOUL.md, USER.md, MEMORY.md and continue as normal.
