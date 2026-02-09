@@ -36,5 +36,14 @@
 - Update BOOTSTRAP.md to pull from GitHub on fresh install
 - F1 app styling improvements
 
+## Schedule
+- Monday & Friday wake-up briefing: 5:15am UK time
+- Other days: 7am UK time
+- Hourly git backup cron set up
+
+## Gmail
+- Read-only OAuth (gmail.readonly) agreed as safe — not yet configured
+- Nick will paste specific emails for help
+
 ## Recurring
 - Gosia payment: £260
