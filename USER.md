@@ -11,7 +11,7 @@
 
 - Works at **The Maintenance Team** (has an aged debtors system using accounts@themaintenanceteam.co.uk)
 - Web dev background
-- Kids: **Benji** (9) and **Eden** (6) — likes 3D printed toys for them
+- Kids: **Benjy** (9) and **Eden** (6) — likes 3D printed toys for them
 - Has a **Bambu A1 3D printer**
 - Has **ExpressVPN** subscription (no SOCKS5 though)
 - Runs OpenClaw on **Zeabur** (Hamburg server)
