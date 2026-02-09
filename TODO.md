@@ -9,7 +9,11 @@
 - **World Cup Sweepstakes App**: Firebase hosting, mobile responsiveness, Google auth
 
 ## Work
-- **Aged Debtors Command Centre**: Notion-based system for The Maintenance Team
+- **Dashboard for TV screen**: Office display dashboard
+- **Aged Debtors Database**: Build out on Notion
+- **WhatsApp Subbie Management**: OpenClaw bot for subcontractor reports/scheduling + dashboard
+- **Fleet Management**: Update with van check process
+- **Supplier Payments**: Go through monthly payments for this month
 
 ## OpenClaw Setup
 - ~~Set up Telegram~~ ✓
@@ -21,7 +25,9 @@
 - Research how people use Bambu with OpenClaw
 - Configure Notion integration
 - Set up ElevenLabs for better voice
-- Set up morning briefing cron (7am UK)
-- Create GitHub repo nickcres/openclaw-memory for backup
+- ~~Set up morning briefing cron~~ ✓
+- ~~Create GitHub backup repo~~ ✓
+- Set up Gmail (readonly) — waiting for OAuth credentials from Nick
+- Set up Trakt for watchlist — waiting for Nick to create account
 - Mission Control Dashboard
 - Advanced Memory System Setup
