@@ -27,7 +27,7 @@
 - Set up ElevenLabs for better voice
 - ~~Set up morning briefing cron~~ ✓
 - ~~Create GitHub backup repo~~ ✓
-- Set up Gmail (readonly) — waiting for OAuth credentials from Nick
+- ~~Set up Gmail (readonly)~~ ✓
 - Set up Trakt for watchlist — waiting for Nick to create account
 - Set up Grok web search
 - Mission Control Dashboard
