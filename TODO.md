@@ -29,5 +29,6 @@
 - ~~Create GitHub backup repo~~ ✓
 - Set up Gmail (readonly) — waiting for OAuth credentials from Nick
 - Set up Trakt for watchlist — waiting for Nick to create account
+- Set up Grok web search
 - Mission Control Dashboard
 - Advanced Memory System Setup
