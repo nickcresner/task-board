@@ -14,6 +14,7 @@
 - **WhatsApp Subbie Management**: OpenClaw bot for subcontractor reports/scheduling + dashboard
 - **Fleet Management**: Update with van check process
 - **Supplier Payments**: Go through monthly payments for this month
+- **Find dictation app for engineers**
 
 ## OpenClaw Setup
 - ~~Set up Telegram~~ ✓
