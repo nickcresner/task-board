@@ -31,5 +31,9 @@
 - ~~Set up Gmail (readonly)~~ ✓
 - Set up Trakt for watchlist — waiting for Nick to create account
 - Set up Grok web search
-- Mission Control Dashboard
+- **Mission Control Dashboard** (design ready)
+  - Tech: PHP + OpenClaw CLI (Hostinger shared hosting compatible)
+  - Pages: index (health), memory (file browser/editor), agents (sub-agent spawn/view), logs (tail), costs (API spend)
+  - Features: real-time agent status, memory editing, log streaming, cost tracking
+  - Auth: .htaccess password protection
 - Advanced Memory System Setup
