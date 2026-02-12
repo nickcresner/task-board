@@ -1,7 +1,7 @@
 # TODO
 
 ## Personal
-- Pay Gosia £260
+- ~~Pay Gosia £260~~ ✓
 
 ## Projects
 - **the-undercut-f1**: Styling improvements
