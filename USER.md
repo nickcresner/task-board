@@ -14,7 +14,7 @@
 - Kids: **Benjy** (9) and **Eden** (6) — likes 3D printed toys for them
 - Has a **Bambu A1 3D printer**
 - Has **ExpressVPN** subscription (no SOCKS5 though)
-- Runs OpenClaw on **Zeabur** (Hamburg server)
+- Runs OpenClaw on **Hostinger** (was Zeabur, migrated Feb 2026)
 - Has had OpenClaw break before — **DO NOT break the config**. Be very careful with config changes.
 - Pays **Gosia £260** (recurring?)
 - Interested in: F1, Tottenham Hotspur, Winter Olympics, crypto, tech news
