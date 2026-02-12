@@ -1,8 +1,9 @@
 # Memory
 
 ## Key Facts
-- Nick runs OpenClaw on Zeabur (Hamburg server)
+- Nick runs OpenClaw on Hostinger (was Zeabur, migrated Feb 2026)
 - OpenClaw has broken before requiring full reinstall — BE CAREFUL with config changes
+- **CRITICAL:** Read docs/openclaw-production-gotchas.md before any config changes
 - GitHub: nickcresner (private repo nickcresner/openclaw-workspace for backup)
 - Discord bot client_id: 1470176016612724756
 - Bambu A1 3D printer — skill install pending (tobiasbischoff/bambu-cli)
