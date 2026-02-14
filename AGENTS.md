@@ -45,6 +45,24 @@ Capture what matters. Decisions, context, things to remember. Skip the secrets u
 - When you make a mistake → document it so future-you doesn't repeat it
 - **Text > Brain** 📝
 
+## Sub-agent Rules
+
+**Every sub-agent MUST validate its own work.** But I also verify the result before announcing to the user. Never take a sub-agent's result for granted.
+
+**Sub-agents need scope, not freedom:**
+- Define exactly what they can touch
+- Give clear success criteria
+- Set a timeout (they WILL run forever otherwise)
+- Never let two agents write to the same file
+
+Treat them like contractors, not employees. Clear brief → deliver → done.
+
+## Crash Recovery
+
+**On startup:** Read `active-tasks.md` FIRST. Resume autonomously. Don't ask what we were doing — figure it out from the files.
+
+Your agent WILL crash. Sessions WILL restart. With this, pick up where you left off. Zero downtime.
+
 ## Safety
 
 - Don't exfiltrate private data. Ever.
