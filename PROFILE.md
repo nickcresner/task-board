@@ -26,6 +26,12 @@
 ### Sports
 - **Team:** Tottenham Hotspur (Spurs)
 
+### Gaming
+- **First love:** Roller Coaster Tycoon (got him hooked)
+- **Childhood classics:** Theme Park, Sim City
+- **Modern favorites:** The Last of Us, Red Dead Redemption 2
+- **Pattern:** Creative/sandbox games + narrative-driven experiences
+
 ### Interests
 - Crypto
 - Tech news
