@@ -3,6 +3,10 @@
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1"/>
     <meta charset="utf-8"/>
+    <meta name="theme-color" content="#ff6b00"/>
+    <meta name="apple-mobile-web-app-capable" content="yes"/>
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"/>
+    <link rel="manifest" href="/manifest.json"/>
     <title>Nick & Henry - Task Board</title>
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -67,7 +71,7 @@
                 <div class="task-title">Deploy Task Board to Mobile</div>
                 <div class="task-meta">
                     <span class="assignee">Henry</span>
-                    <span class="status active">Active</span>
+                    <span class="status done">Done</span>
                 </div>
             </div>
             
@@ -87,6 +91,13 @@
     <script>
         // Auto-refresh every 15 minutes
         setInterval(() => location.reload(), 15 * 60 * 1000);
+        
+        // Register Service Worker for PWA
+        if ('serviceWorker' in navigator) {
+            navigator.serviceWorker.register('/sw.js')
+                .then(reg => console.log('SW registered'))
+                .catch(err => console.log('SW registration failed'));
+        }
     </script>
 </body>
 </html>
