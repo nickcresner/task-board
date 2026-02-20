@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """
-Reddit Hourly Intel Fetcher
-Fetches top posts from configured subreddits for hourly updates.
+Reddit Hourly Intel Fetcher - Raw Headlines Edition
+Fetches top posts from configured subreddits with full titles and direct links.
 """
 
 import json
@@ -12,16 +12,16 @@ from datetime import datetime
 
 # Subreddits to track
 SUBREDDITS = [
-    "coys",           # Spurs news/transfers
-    "todayilearned",  # Interesting facts
-    "unitedkingdom",  # UK news
-    "olympics"        # Olympic updates (WinterOlympics often inactive)
+    "coys",
+    "todayilearned",
+    "unitedkingdom",
+    "olympics"
 ]
 
 REDDIT_USER_AGENT = "Mozilla/5.0 (compatible; OpenClaw-Bot/1.0; +https://openclaw.ai)"
 
-def fetch_subreddit(subreddit, limit=3):
-    """Fetch top posts from a subreddit."""
+def fetch_subreddit(subreddit, limit=5):
+    """Fetch hot posts from a subreddit."""
     url = f"https://www.reddit.com/r/{subreddit}/hot.json?limit={limit}"
     headers = {"User-Agent": REDDIT_USER_AGENT}
     
@@ -32,21 +32,26 @@ def fetch_subreddit(subreddit, limit=3):
             posts = []
             for child in data.get('data', {}).get('children', []):
                 post = child.get('data', {})
+                # Skip stickied/pinned posts
+                if post.get('stickied'):
+                    continue
                 posts.append({
-                    'title': post.get('title', ''),
-                    'url': f"https://reddit.com{post.get('permalink', '')}",
+                    'title': post.get('title', '').strip(),
+                    'permalink': f"https://reddit.com{post.get('permalink', '')}",
+                    'url': post.get('url', ''),
                     'score': post.get('score', 0),
                     'subreddit': subreddit
                 })
             return posts
-    except urllib.error.HTTPError as e:
-        return [{'error': f'HTTP {e.code}', 'subreddit': subreddit}]
     except Exception as e:
         return [{'error': str(e), 'subreddit': subreddit}]
 
 def format_posts(posts):
-    """Format posts into a readable summary."""
-    lines = [f"📊 Reddit Intel — {datetime.now().strftime('%H:%M %d/%m/%Y')}\n"]
+    """Format posts with full titles and links."""
+    lines = [
+        f"📰 Reddit Hourly — {datetime.now().strftime('%H:%M, %A %d %B')}\n",
+        "=" * 50
+    ]
     
     by_subreddit = {}
     for post in posts:
@@ -55,31 +60,42 @@ def format_posts(posts):
             by_subreddit[sub] = []
         by_subreddit[sub].append(post)
     
-    subreddit_names = {
-        'coys': '⚽ r/coys (Spurs)',
-        'todayilearned': '🧠 r/todayilearned',
-        'unitedkingdom': '🇬🇧 r/unitedkingdom',
-        'olympics': '🏅 r/olympics'
+    subreddit_emoji = {
+        'coys': '⚽',
+        'todayilearned': '🧠',
+        'unitedkingdom': '🇬🇧',
+        'olympics': '🏅'
     }
     
     for subreddit in SUBREDDITS:
-        name = subreddit_names.get(subreddit, f"r/{subreddit}")
-        lines.append(f"\n{name}")
-        lines.append("─" * 30)
+        emoji = subreddit_emoji.get(subreddit, '📌')
+        lines.append(f"\n{emoji} r/{subreddit}")
+        lines.append("─" * 50)
         
         posts_in_sub = by_subreddit.get(subreddit, [])
         if not posts_in_sub:
-            lines.append("  No new posts")
+            lines.append("No posts")
             continue
             
-        for post in posts_in_sub:
+        for i, post in enumerate(posts_in_sub, 1):
             if 'error' in post:
-                lines.append(f"  ⚠️ Error: {post['error']}")
+                lines.append(f"Error: {post['error']}")
                 continue
-            title = post['title'][:60] + "..." if len(post['title']) > 60 else post['title']
-            lines.append(f"  • {title}")
-            lines.append(f"    👍 {post['score']} | {post['url']}")
+            
+            # Full title, no truncation
+            title = post['title']
+            score = post['score']
+            reddit_link = post['permalink']
+            
+            lines.append(f"\n{i}. {title}")
+            lines.append(f"   👍 {score} | <{reddit_link}>")
+            
+            # Show external link if different from Reddit discussion
+            external_url = post.get('url', '')
+            if external_url and external_url != reddit_link:
+                lines.append(f"   🔗 External: <{external_url}>")
     
+    lines.append("\n" + "=" * 50)
     return "\n".join(lines)
 
 def main():
