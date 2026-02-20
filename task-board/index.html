@@ -13,6 +13,7 @@
         body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; background: #0a0a0a; color: #ffffff; padding: 16px; }
         .board { max-width: 400px; margin: 0 auto; }
         .header { font-size: 20px; font-weight: bold; margin-bottom: 20px; text-align: center; color: #ff6b00; }
+        .section-title { font-size: 12px; color: #888; text-transform: uppercase; letter-spacing: 1px; margin: 20px 0 10px 0; padding-left: 4px; }
         
         .task-list { display: flex; flex-direction: column; gap: 8px; }
         .task-card {
@@ -29,6 +30,7 @@
         .status.active { background: #007acc; }
         .status.done { background: #28a745; }
         .status.backlog { background: #6f42c1; }
+        .status.stalled { background: #dc3545; }
         
         .assignee { color: #ff6b00; }
         
@@ -57,10 +59,37 @@
     <div class="board">
         <div class="header">Nick & Henry Board</div>
         
+        <div class="section-title">In Progress</div>
         <div class="task-list">
-            <!-- Active Tasks -->
             <div class="task-card">
-                <div class="task-title">Build Reddit Hourly Intel Skill</div>
+                <div class="task-title">Moving to new flat across the street</div>
+                <div class="task-meta">
+                    <span class="assignee">Nick</span>
+                    <span class="status active">Active</span>
+                </div>
+            </div>
+            
+            <div class="task-card">
+                <div class="task-title">Hybrid memory system with decay tiers</div>
+                <div class="task-meta">
+                    <span class="assignee">Henry</span>
+                    <span class="status active">Active</span>
+                </div>
+            </div>
+            
+            <div class="task-card">
+                <div class="task-title">QMD semantic search (embeddings)</div>
+                <div class="task-meta">
+                    <span class="assignee">Henry</span>
+                    <span class="status active">Active</span>
+                </div>
+            </div>
+        </div>
+        
+        <div class="section-title">Done Today</div>
+        <div class="task-list">
+            <div class="task-card">
+                <div class="task-title">Reddit Hourly Intel Skill</div>
                 <div class="task-meta">
                     <span class="assignee">Henry</span>
                     <span class="status done">Done</span>
@@ -68,14 +97,13 @@
             </div>
             
             <div class="task-card">
-                <div class="task-title">Deploy Task Board to Mobile</div>
+                <div class="task-title">Task Board PWA deployed</div>
                 <div class="task-meta">
                     <span class="assignee">Henry</span>
                     <span class="status done">Done</span>
                 </div>
             </div>
             
-            <!-- Backlog -->
             <div class="task-card">
                 <div class="task-title">Memory Viewer installed</div>
                 <div class="task-meta">
@@ -85,10 +113,64 @@
             </div>
             
             <div class="task-card">
-                <div class="task-title">Gmail Integration Setup</div>
+                <div class="task-title">QMD installed & indexed</div>
+                <div class="task-meta">
+                    <span class="assignee">Henry</span>
+                    <span class="status done">Done</span>
+                </div>
+            </div>
+            
+            <div class="task-card">
+                <div class="task-title">Bun runtime installed</div>
+                <div class="task-meta">
+                    <span class="assignee">Henry</span>
+                    <span class="status done">Done</span>
+                </div>
+            </div>
+        </div>
+        
+        <div class="section-title">Next Up</div>
+        <div class="task-list">
+            <div class="task-card">
+                <div class="task-title">Initialize agent-vault for secrets</div>
                 <div class="task-meta">
                     <span class="assignee">Henry</span>
                     <span class="status backlog">Backlog</span>
+                </div>
+            </div>
+            
+            <div class="task-card">
+                <div class="task-title">Todo.md + ProgressLog.md system</div>
+                <div class="task-meta">
+                    <span class="assignee">Henry</span>
+                    <span class="status backlog">Backlog</span>
+                </div>
+            </div>
+            
+            <div class="task-card">
+                <div class="task-title">Model tiering config (Sonnet 4.6)</div>
+                <div class="task-meta">
+                    <span class="assignee">Henry</span>
+                    <span class="status backlog">Backlog</span>
+                </div>
+            </div>
+            
+            <div class="task-card">
+                <div class="task-title">OpenClaw security audit</div>
+                <div class="task-meta">
+                    <span class="assignee">Henry</span>
+                    <span class="status backlog">Backlog</span>
+                </div>
+            </div>
+        </div>
+        
+        <div class="section-title">Stalled</div>
+        <div class="task-list">
+            <div class="task-card">
+                <div class="task-title">The Maintenance Team OpenClaw system</div>
+                <div class="task-meta">
+                    <span class="assignee">Henry</span>
+                    <span class="status stalled">Stalled</span>
                 </div>
             </div>
         </div>
