@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <meta charset="utf-8"/>
+    <title>Nick & Henry - Tasks Board</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; background: #0a0a0a; color: #ffffff; padding: 16px; }
+        .board { max-width: 1200px; margin: 0 auto; }
+        .header { font-size: 24px; font-weight: bold; margin-bottom: 20px; text-align: center; color: #ff6b00; }
+        
+        .columns {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 16px;
+            margin-bottom: 30px;
+        }
+        
+        .column {
+            background: #1a1a1a;
+            border-radius: 12px;
+            padding: 20px;
+            min-height: 300px;
+        }
+        
+        .column-header {
+            font-weight: bold;
+            font-size: 16px;
+            margin-bottom: 16px;
+            padding-bottom: 8px;
+            border-bottom: 2px solid #262626;
+        }
+        
+        .column.in-planning { border-left: 4px solid #ffd700; }
+        .column.to-do { border-left: 4px solid #007acc; }
+        .column.in-progress { border-left: 4px solid #28a745; }
+        .column.on-hold { border-left: 4px solid #6f42c1; }
+        .column.done { border-left: 4px solid #52c41a; }
+        
+        .task-card {
+            background: #262626;
+            border-radius: 8px;
+            padding: 16px;
+            margin-bottom: 12px;
+            cursor: grab;
+            transition: transform 0.2s ease;
+        }
+        .task-card:hover { transform: translateY(-2px); }
+        .task-card.dragging { opacity: 0.7; transform: rotate(2deg); }
+        
+        .task-title { font-weight: 600; font-size: 14px; margin-bottom: 8px; }
+        .task-meta { display: flex; justify-content: space-between; font-size: 12px; color: #888; margin-bottom: 8px; }
+        .assignee { color: #ff6b00; }
+        
+        .task-desc { font-size: 13px; color: #ccc; margin-bottom: 8px; }
+        
+        .task-image {
+            width: 100%;
+            border-radius: 4px;
+            margin-bottom: 8px;
+        }
+        
+        .add-task-btn {
+            background: #ff6b00;
+            color: #0a0a0a;
+            border: none;
+            border-radius: 6px;
+            padding: 8px 16px;
+            cursor: pointer;
+            font-size: 12px;
+            margin-top: 12px;
+        }
+        
+        .upload-area {
+            border: 2px dashed #404040;
+            border-radius: 6px;
+            padding: 20px;
+            text-align: center;
+            color: #888;
+            cursor: pointer;
+            margin-top: 12px;
+        }
+        
+        /* Mobile responsive */
+        @media (max-width: 768px) {
+            .columns { grid-template-columns: 1fr; }
+            .task-card { padding: 12px; }
+        }
+    </style>
+</head>
+<body>
+    <div class="board">
+        <div class="header">Nick & Henry - Tasks Board</div>
+        
+        <div class="columns">
+            <div class="column in-planning">
+                <div class="column-header">🟡 In Planning</div>
+                <div id="in-planning-tasks">
+                    <div class="task-card" draggable="true">
+                        <div class="task-meta">
+                            <span class="assignee">Henry</span>
+                            <span>High</span>
+                        </div>
+                        <div class="task-title">Mission Control Core Setup</div>
+                        <div class="task-desc">Initial single-board tasks system with proper architecture</div>
+                    </div>
+                </div>
+                <button class="add-task-btn" onclick="addTask('in-planning')">+ Add Task</button>
+            </div>
+            
+            <div class="column to-do">
+                <div class="column-header">🔵 To Do</div>
+                <div id="todo-tasks">
+                    <div class="task-card" draggable="true">
+                        <div class="task-meta">
+                            <span class="assignee">Nick</span>
+                            <span>High</span>
+                        </div>
+                        <div class="task-title">Test Task Board Functionality</div>
+                        <div class="task-desc">Open tasks-board/index.html and verify drag/drop works</div>
+                    </div>
+                    <div class="task-card" draggable="true">
+                        <div class="task-meta">
+                            <span class="assignee">Nick</span>
+                            <span>High</span>
+                        </div>
+                        <div class="task-title">Add Real Tasks to Board</div>
+                        <div class="task-desc">Add actual work tasks to test the Kanban system</div>
+                    </div>
+                </div>
+                <button class="add-task-btn" onclick="addTask('todo')">+ Add Task</button>
+            </div>
+            
+            <div class="column in-progress">
+                <div class="column-header">🟢 In Progress</div>
+                <div id="in-progress-tasks">
+                    <div class="task-card" draggable="true">
+                        <div class="task-meta">
+                            <span class="assignee">Henry</span>
+                            <span>High</span>
+                        </div>
+                        <div class="task-title">Build Minimal Tasks Board</div>
+                        <div class="task-desc">Create clean Kanban board with image support and drag-drop</div>
+                    </div>
+                </div>
+                <button class="add-task-btn" onclick="addTask('in-progress')">+ Add Task</button>
+            </div>
+            
+            <div class="column on-hold">
+                <div class="column-header">🟣 On Hold</div>
+                <div id="on-hold-tasks">
+                    <div class="task-card" draggable="true">
+                        <div class="task-meta">
+                            <span class="assignee">Both</span>
+                            <span>Low</span>
+                        </div>
+                        <div class="task-title">Advanced Memory System</div>
+                        <div class="task-desc">Implement memory optimizations after tasks board works</div>
+                    </div>
+                </div>
+                <button class="add-task-btn" onclick="addTask('on-hold')">+ Add Task</button>
+            </div>
+            
+            <div class="column done">
+                <div class="column-header">✅ Done</div>
+                <div id="done-tasks">
+                    <div class="task-card" draggable="true">
+                        <div class="task-meta">
+                            <span class="assignee">Henry</span>
+                            <span>Done</span>
+                        </div>
+                        <div class="task-title">Replace Memory Cleanup</div>
+                        <div class="task-desc">Swapped hourly cleanup with Reddit intel updates</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        let tasks = {
+            'in-planning': [],
+            'todo': [],
+            'in-progress': [],
+            'on-hold': [],
+            'done': []
+        };
+        
+        function addTask(status) {
+            const title = prompt('Task title:');
+            const assignee = prompt('Assigned to: (Nick/Henry/Both)');
+            if (title && assignee) {
+                const div = document.createElement('div');
+                div.className = 'task-card';
+                div.draggable = true;
+                div.innerHTML = `
+                    <div class="task-meta">
+                        <span class="assignee">${assignee}</span>
+                        <span>New</span>
+                    </div>
+                    <div class="task-title">${title}</div>
+                    <div class="upload-area" onclick="addImage(this)">
+                        📸 Click to add image
+                    </div>
+                `;
+                div.dataset.status = status;
+                document.getElementById(`${status}-tasks`).appendChild(div);
+            }
+        }
+        
+        function addImage(uploadArea) {
+            const input = document.createElement('input');
+            input.type = 'file';
+            input.accept = 'image/*';
+            input.onchange = (e) => {
+                const file = e.target.files[0];
+                if (file) {
+                    const img = document.createElement('img');
+                    img.src = URL.createObjectURL(file);
+                    img.className = 'task-image';
+                    uploadArea.parentNode.insertBefore(img, uploadArea);
+                    uploadArea.style.display = 'none';
+                }
+            };
+            input.click();
+        }
+        
+        // Drag and drop setup
+        let draggedTask = null;
+        document.addEventListener('dragstart', (e) => {
+            if (e.target.classList.contains('task-card')) {
+                draggedTask = e.target;
+                e.target.classList.add('dragging');
+            }
+        });
+        
+        document.addEventListener('dragend', (e) => {
+            if (e.target.classList.contains('task-card')) {
+                e.target.classList.remove('dragging');
+            }
+        });
+        
+        document.addEventListener('dragover', (e) => {
+            e.preventDefault();
+        });
+        
+        document.addEventListener('drop', (e) => {
+            e.preventDefault();
+            const column = e.target.closest('.column');
+            if (column && draggedTask) {
+                const targetStatus = column.id.replace('-tasks', '');
+                column.querySelector('.task-list').appendChild(draggedTask);
+            }
+        });
+    </script>
+</body>
+</html>
